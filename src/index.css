@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@layer components{
+    .btn{
+        @apply cursor-pointer bg-teal-600 hover:bg-teal-700 text-white px-5 py-2 rounded-xl flex items-center gap-2 shadow-lg transition-transform hover:scale-105; 
+    }
+    .heading2{
+        @apply text-lg font-semibold text-gray-800 mb-3
+    }
+    .textBox{
+        @apply w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400
+    }
+}
