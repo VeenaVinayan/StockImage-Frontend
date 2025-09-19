@@ -1,11 +1,15 @@
 import './App.css'
 import AppRouter from './Router/index';
 import { ToastContainer } from 'react-toastify';
+import { AuthProvider } from './Contexxt/authProvider';
+
 function App() {
   return (
     <>
-     <ToastContainer />
-      <AppRouter />
+    <AuthProvider>
+       <ToastContainer />
+       <AppRouter />
+     </AuthProvider> 
     </>
   )
 }

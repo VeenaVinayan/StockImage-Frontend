@@ -1,23 +1,30 @@
-import React from 'react'
+import React , { useContext} from 'react'
 import { useForm } from 'react-hook-form';
 import type { TLoginUser, TLoginResult } from '../../types/auth.types';
 import authService from '../../services/authService';
-import { useNavigate ,Link } from 'react-router-dom';
+import { useNavigate ,Link , Navigate} from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { AuthContext } from '../../Contexxt/authContext';
 
 const  Login: React.FC = () => {
+    const context = useContext(AuthContext);
     const navigate = useNavigate();
     const { register, 
             handleSubmit,
             formState:{errors } } = useForm<TLoginUser>();
-    
+    // if(context?.isAuthenticated){
+    //    return(<Navigate to="/user/profile" replace />)
+    // }
+
     const onSubmit = async(data : TLoginUser) =>{
         console.log('Login  Data ::',data);
         const res : TLoginResult = await authService.userLogin(data);
         if(res){
            const { userData } = res;
+           context?.login();
            console.log('Result value in Login ::',userData);
            console.log("After login data = ",userData);
+           
            localStorage.setItem("accessToekn",res.accessToken);
            toast('login Successfully');
            navigate('/user/profile',{state:userData}); 

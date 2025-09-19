@@ -52,7 +52,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ userId }) => {
          const res = await ImageService.uploadImages(formData);
          if(res){
               toast.success("Successfully upload images");
-              navigate('/user/profile')
+              navigate(-1)
          }else{
               toast.error("Upload images failed");
          }
@@ -78,6 +78,8 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ userId }) => {
                                onChange={(e) =>handleTitle(idx,e.target.value)}
                                placeholder='Enter title'
                                className="p-2 mt-1 border-amber-200 rounded"
+                               required
+                             
                    />
                </div>
              ) ) }
@@ -96,7 +98,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ userId }) => {
               accept="image/*"
               className="hidden"
               onChange={handleFileChange}
-            />
+          />
           </label>
         
           {images.length > 0 && 

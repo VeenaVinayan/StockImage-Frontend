@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Pencil,Trash2,User,Mail,Phone,LogIn} from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { type TResetPassword, type TResponseType, type TUserData } from "../../types/auth.types";
@@ -15,6 +15,7 @@ import ImageCard  from "./DragAndDrop";
 import authService from "../../services/authService";
 import { useNavigate } from 'react-router-dom';
 import ResetPassword from "../Auth/ResetPassword";
+import { AuthContext } from "../../Contexxt/authContext";
 
 export default function ProfilePage() {
   const [uploaded, setUploaded] = useState<TImage[]>([]);
@@ -23,6 +24,7 @@ export default function ProfilePage() {
   const [ isChange, setOrderChange] = useState<boolean>(false);
   const [ isResetPassword, setResetPassword] = useState<boolean>(false);
 
+  const context = useContext(AuthContext);
   const [editImage, setEditImage] = useState<{
     id: string;
     image: string;
@@ -123,6 +125,7 @@ export default function ProfilePage() {
    const res : TResponseType = await authService.userLogout();
    if(res.success){
       localStorage.removeItem('accessToken');
+      context?.logout();
       toast.success(res.message);
       navigate('/');
    }
