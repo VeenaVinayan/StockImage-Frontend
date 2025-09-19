@@ -2,7 +2,7 @@ import React , { useContext} from 'react'
 import { useForm } from 'react-hook-form';
 import type { TLoginUser, TLoginResult } from '../../types/auth.types';
 import authService from '../../services/authService';
-import { useNavigate ,Link , Navigate} from 'react-router-dom';
+import { useNavigate ,Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Contexxt/authContext';
 
