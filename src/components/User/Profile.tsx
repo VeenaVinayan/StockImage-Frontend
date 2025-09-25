@@ -23,7 +23,7 @@ export default function ProfilePage() {
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [ isChange, setOrderChange] = useState<boolean>(false);
   const [ isResetPassword, setResetPassword] = useState<boolean>(false);
-
+  const [ showed, setShowed ] = useState(false);
   const context = useContext(AuthContext);
   const [editImage, setEditImage] = useState<{
     id: string;
@@ -49,9 +49,12 @@ export default function ProfilePage() {
     const fetchData = async () => {
       const uploadedImages = await ImageService.fetchImages(userData.id);
       setUploaded(uploadedImages);
+      if(uploadedImages.length === 0){
+         setShowed(true);
+      }
     };
     fetchData();
-  }, [userData]);
+  }, [userData,showed]);
 
   const handleEdit = (image: TImage) => {
     Swal.fire({
@@ -216,7 +219,8 @@ export default function ProfilePage() {
             { isChange && (<button className="btn justify-end m-5" onClick={handelChange}>Save</button>)}
           </div>
         ) : (
-          <ImageUpload userId={user.id} />
+         showed &&  <ImageUpload userId={user.id} update={setShowed}/>
+        
         )}
       </div>
 

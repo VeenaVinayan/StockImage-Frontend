@@ -3,17 +3,16 @@ import { type TImageUpload } from '../../types/image.types';
 import { Upload } from 'lucide-react';
 import ImageService from '../../services/imageService';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 
 interface ImageUploadProps{
    userId: string;
+   update: (val: boolean) => void;
 }
 
-const ImageUpload: React.FC<ImageUploadProps> = ({ userId }) => {
+const ImageUpload: React.FC<ImageUploadProps> = ({ userId , update }) => {
     const [images, setImages] = useState<TImageUpload[]>([]);
     const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
-  
+      
     const handleTitle = (index: number, value : string) =>{
         setImages((prev) =>
           prev.map((img,i) => ( i===index ? { ...img,title:value}: img)) 
@@ -52,7 +51,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ userId }) => {
          const res = await ImageService.uploadImages(formData);
          if(res){
               toast.success("Successfully upload images");
-              navigate(-1)
+              update(false);
          }else{
               toast.error("Upload images failed");
          }
