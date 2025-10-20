@@ -183,11 +183,11 @@ export default function ProfilePage() {
         {uploaded.length > 0 ? (
           <div>
             <h2 className="text-4xl font-bold text-gray-800 mb-4 ">Explore Gallery</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 gap-6">
               {uploaded.map((image,index) => (
                 <div
                   key={image._id}
-                  className="relative group rounded-2xl shadow-md overflow-hidden bg-white hover:shadow-xl transition duration-300"
+                  className="relative group rounded-2xl shadow-md overflow-hidden bg-white hover:shadow-xl transition duration-300 m-2 p-3"
                 >
                   <ImageCard
                       key={image._id}

@@ -16,12 +16,20 @@ export default function LandingPage() {
 
       <header className="w-full px-6 py-4 flex justify-between items-center bg-white/80 backdrop-blur-md shadow-md fixed top-0 z-20">
         <h1 className="text-2xl font-bold text-teal-600">ShotStack</h1>
+        <div className="flex flex-row p-2 m-1 border rounded-xl bg-teal-800 hover:bg-teal-900 shadow-2xs border-white">
         <Link
           to="/register"
-          className="bg-teal-600 text-white px-4 py-2 rounded-xl hover:bg-teal-900 transition"
+          className="text-white px-1 py-1 transition"
         >
-          Login / Register
+           Register /
         </Link>
+        <Link 
+           to="/login"
+           className="text-white px-1 py-1 transition"
+         > Login
+          </Link>  
+        </div>
+       
       </header>
 
       <section className="relative flex-1 flex flex-col justify-center items-center text-center px-6 mt-20 z-10">

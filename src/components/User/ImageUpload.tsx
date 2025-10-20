@@ -38,7 +38,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ userId , update }) => {
          const files =  images.map((image) => image.file);
          const titles = images.map((image) => image.title);
          const orders = images.map((image) => image.order);
-    
+         
          files.forEach((file) => formData.append("images",file));
               
          formData.append("titles",JSON.stringify(titles));
